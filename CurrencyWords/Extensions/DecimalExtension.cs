@@ -1,14 +1,17 @@
-﻿using CurrencyWords.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CurrencyWords.Enum;
+using CurrencyWords.Interfaces;
 
 namespace CurrencyWords.Extensions
 {
     public static class DecimalExtensions
     {
+        public static string ToCurrencyWords(this decimal amount, CurrencyCode currencyCode, ICurrencyWordConverter converter)
+        {
+            return converter.Convert(
+                amount,
+                currencyCode);
+        }
+
         public static string ToCurrencyWords(this decimal amount, string currencyCode, ICurrencyWordConverter converter)
         {
             return converter.Convert(

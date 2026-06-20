@@ -11,12 +11,5 @@ namespace CurrencyWords.Extensions
                 amount,
                 currencyCode);
         }
-
-        public static string ToCurrencyWords(this decimal amount, string currencyCode, ICurrencyWordConverter converter)
-        {
-            return converter.Convert(
-                amount,
-                currencyCode);
-        }
     }
 }

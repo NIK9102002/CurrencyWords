@@ -170,7 +170,7 @@ Benefits:
 Clone the repository:
 
 ```bash
-git clone https://github.com/<your-username>/CurrencyWords.git
+git clone https://github.com/NIK9102002/CurrencyWords.git
 
 cd CurrencyWords
 ```

@@ -1,630 +1,610 @@
-# \# 💰 CurrencyWords
+\# 📦 Installation
 
-# 
 
-# > Convert monetary amounts into words across multiple currencies and numbering systems using .NET.
 
-# 
+Install from NuGet:
 
-# !\[.NET](https://img.shields.io/badge/.NET-8.0-blue)
 
-# !\[License](https://img.shields.io/badge/License-MIT-green)
 
-# !\[Status](https://img.shields.io/badge/Status-Active-success)
+```bash
 
-# !\[Open Source](https://img.shields.io/badge/Open%20Source-Yes-orange)
+dotnet add package CurrencyWords
 
-# 
+```
 
-# \---
 
-# 
 
-# \## 🚀 Why CurrencyWords?
+Or via Package Manager:
 
-# 
 
-# Financial applications frequently need to display amounts in words for:
 
-# 
+```powershell
 
-# \* 🏦 Banking Systems
+Install-Package CurrencyWords
 
-# \* 📄 Invoice Generation
+```
 
-# \* 🧾 ERP Applications
 
-# \* 💵 Cheque Printing
 
-# \* 📊 Financial Reporting
+\---
 
-# \* 💳 Payment Processing Platforms
 
-# 
 
-# Examples:
+\# ⚙️ Dependency Injection Setup
 
-# 
 
-# ```text
 
-# 1,000,000 INR
+Register CurrencyWords in your application:
 
-# → Ten Lakh Rupees Only
 
-# 
 
-# 1,000,000 USD
+```csharp
 
-# → One Million Dollars Only
+using CurrencyWords.DependencyInjection;
 
-# 
 
-# 1,234.56 USD
 
-# → One Thousand Two Hundred Thirty Four Dollars And Fifty Six Cents Only
+var services = new ServiceCollection();
 
-# ```
 
-# 
 
-# Most available libraries convert numbers to words but do not understand:
+services.AddCurrencyWords();
 
-# 
+```
 
-# \* Currency-specific terminology
 
-# \* Indian numbering formats (Lakh/Crore)
 
-# \* Financial document formatting
+Resolve the converter:
 
-# \* Extensible currency metadata
 
-# 
 
-# CurrencyWords solves these problems through a configurable and extensible architecture.
+```csharp
 
-# 
+using CurrencyWords.Interfaces;
 
-# \---
 
-# 
 
-# \## ✨ Features
+var provider = services.BuildServiceProvider();
 
-# 
 
-# \### 🌎 Multi-Currency Support
 
-# 
+var converter =
 
-# | Currency          | Code |
+&#x20;   provider.GetRequiredService<ICurrencyWordConverter>();
 
-# | ----------------- | ---- |
+```
 
-# | Indian Rupee      | INR  |
 
-# | US Dollar         | USD  |
 
-# | Euro              | EUR  |
+\---
 
-# | British Pound     | GBP  |
 
-# | UAE Dirham        | AED  |
 
-# | Singapore Dollar  | SGD  |
+\# 🔥 Extension Method Usage
 
-# | Hong Kong Dollar  | HKD  |
 
-# | Japanese Yen      | JPY  |
 
-# | Canadian Dollar   | CAD  |
+CurrencyWords provides extension methods for a cleaner developer experience.
 
-# | Australian Dollar | AUD  |
 
-# 
 
-# \---
+```csharp
 
-# 
+decimal amount = 1000000m;
 
-# \### 🔢 Multiple Numbering Systems
 
-# 
 
-# \#### Indian Numbering
+string result =
 
-# 
+&#x20;   amount.ToCurrencyWords("INR");
 
-# ```text
+```
 
-# 10,00,000
 
-# → Ten Lakh
 
-# ```
+Output:
 
-# 
 
-# ```text
 
-# 1,00,00,000
+```text
 
-# → One Crore
+Ten Lakh Rupees Only
 
-# ```
+```
 
-# 
 
-# \#### International Numbering
 
-# 
+\---
 
-# ```text
 
-# 1,000,000
 
-# → One Million
+\# 📋 Examples
 
-# ```
 
-# 
 
-# ```text
+\## Indian Rupee (INR)
 
-# 1,000,000,000
 
-# → One Billion
 
-# ```
+```csharp
 
-# 
+converter.Convert(1000000m, "INR");
 
-# \---
+```
 
-# 
 
-# \### 🛠 Additional Features
 
-# 
+Output:
 
-# \* ✅ Decimal Amount Support
 
-# \* ✅ Negative Amount Support
 
-# \* ✅ Dependency Injection Ready
+```text
 
-# \* ✅ JSON-Based Configuration
+Ten Lakh Rupees Only
 
-# \* ✅ Extension Methods
+```
 
-# \* ✅ Open Source
 
-# \* ✅ MIT Licensed
 
-# \* ✅ .NET 8 Compatible
+\---
 
-# 
 
-# \---
 
-# 
+\## US Dollar (USD)
 
-# \# 🏗 Architecture
 
-# 
 
-# CurrencyWords follows a Strategy Pattern implementation.
+```csharp
 
-# 
+converter.Convert(1000000m, "USD");
 
-# ```text
+```
 
-# &#x20;               CurrencyWordConverter
 
-# &#x20;                         │
 
-# &#x20;                         ▼
+Output:
 
-# &#x20;               Currency Metadata
 
-# &#x20;                         │
 
-# &#x20;         ┌───────────────┴───────────────┐
+```text
 
-# &#x20;         │                               │
+One Million Dollars Only
 
-# &#x20;         ▼                               ▼
+```
 
-# 
 
-# &#x20;IndianNumberFormatter     InternationalNumberFormatter
 
-# 
+\---
 
-# &#x20;         │                               │
 
-# &#x20;         └───────────────┬───────────────┘
 
-# &#x20;                         ▼
+\## Decimal Amount
 
-# 
 
-# &#x20;                Amount In Words
 
-# ```
+```csharp
 
-# 
+converter.Convert(1234.56m, "USD");
 
-# \---
+```
 
-# 
 
-# \# 📂 Solution Structure
 
-# 
+Output:
 
-# ```text
 
-# CurrencyWords
 
-# 
+```text
 
-# ├── Configurations
+One Thousand Two Hundred Thirty Four Dollars And Fifty Six Cents Only
 
-# ├── Interfaces
+```
 
-# ├── Formatters
 
-# ├── Services
 
-# ├── Extensions
+\---
 
-# ├── DependencyInjection
 
-# └── Resources
 
-# ```
+\## Negative Amount
 
-# 
 
-# \---
 
-# 
+```csharp
 
-# \# ⚡ Quick Start
+converter.Convert(-500m, "USD");
 
-# 
+```
 
-# \## Clone Repository
 
-# 
 
-# ```bash
+Output:
 
-# git clone https://github.com/yourusername/CurrencyWords.git
 
-# 
 
-# cd CurrencyWords
+```text
 
-# ```
+Minus Five Hundred Dollars Only
 
-# 
+```
 
-# \## Build
 
-# 
 
-# ```bash
+\---
 
-# dotnet restore
 
-# 
 
-# dotnet build
+\# 🌍 Supported Currencies
 
-# ```
 
-# 
 
-# \---
+| Code | Currency          | Numbering System |
 
-# 
+| ---- | ----------------- | ---------------- |
 
-# \# 💡 Usage
+| INR  | Indian Rupee      | Indian           |
 
-# 
+| USD  | US Dollar         | International    |
 
-# ```csharp
+| EUR  | Euro              | International    |
 
-# var result =
+| GBP  | British Pound     | International    |
 
-# &#x20;   converter.Convert(
+| AED  | UAE Dirham        | International    |
 
-# &#x20;       1000000m,
+| SGD  | Singapore Dollar  | International    |
 
-# &#x20;       "INR");
+| HKD  | Hong Kong Dollar  | International    |
 
-# ```
+| JPY  | Japanese Yen      | International    |
 
-# 
+| CAD  | Canadian Dollar   | International    |
 
-# Output:
+| AUD  | Australian Dollar | International    |
 
-# 
 
-# ```text
 
-# Ten Lakh Rupees Only
+\---
 
-# ```
 
-# 
 
-# \---
+\# 🏗 Architecture Overview
 
-# 
 
-# ```csharp
 
-# var result =
+CurrencyWords follows a Strategy Pattern based architecture.
 
-# &#x20;   converter.Convert(
 
-# &#x20;       1000000m,
 
-# &#x20;       "USD");
+```text
 
-# ```
+CurrencyWordConverter
 
-# 
+&#x20;       │
 
-# Output:
+&#x20;       ▼
 
-# 
+Currency Metadata
 
-# ```text
+&#x20;       │
 
-# One Million Dollars Only
+&#x20;┌──────┴──────┐
 
-# ```
+&#x20;│             │
 
-# 
+&#x20;▼             ▼
 
-# \---
 
-# 
 
-# ```csharp
+Indian      International
 
-# var result =
+Formatter     Formatter
 
-# &#x20;   converter.Convert(
 
-# &#x20;       1234.56m,
 
-# &#x20;       "USD");
+&#x20;       │
 
-# ```
+&#x20;       ▼
 
-# 
 
-# Output:
 
-# 
+&#x20;Amount In Words
 
-# ```text
+```
 
-# One Thousand Two Hundred Thirty Four Dollars And Fifty Six Cents Only
 
-# ```
 
-# 
+Benefits:
 
-# \---
 
-# 
 
-# \# 📸 Demo
+\* Easy to add new numbering systems
 
-# 
+\* Open for extension
 
-# Add a screenshot here after publishing.
+\* Dependency Injection friendly
 
-# 
+\* Configuration driven
 
-# ```text
 
-# INR  -> Ten Lakh Rupees Only
 
-# USD  -> One Million Dollars Only
+\---
 
-# AED  -> One Million Dirhams Only
 
-# ```
 
-# 
+\# 🛠 Local Development
 
-# \---
 
-# 
 
-# \# 🎯 Engineering Highlights
+Clone the repository:
 
-# 
 
-# This project demonstrates:
 
-# 
+```bash
 
-# \* C#
+git clone https://github.com/<your-username>/CurrencyWords.git
 
-# \* .NET 8
 
-# \* Dependency Injection
 
-# \* Strategy Pattern
+cd CurrencyWords
 
-# \* Configuration-Driven Development
+```
 
-# \* SOLID Principles
 
-# \* NuGet Package Design
 
-# \* Open Source Development
+Restore packages:
 
-# 
 
-# \---
 
-# 
+```bash
 
-# \# 🧪 Testing
+dotnet restore
 
-# 
+```
 
-# ```bash
 
-# dotnet test
 
-# ```
+Build:
 
-# 
 
-# Unit tests cover:
 
-# 
+```bash
 
-# \* Indian Numbering System
+dotnet build
 
-# \* International Numbering System
+```
 
-# \* Decimal Values
 
-# \* Negative Values
 
-# \* Currency Validation
+Run tests:
 
-# 
 
-# \---
 
-# 
+```bash
 
-# \# 🗺 Roadmap
+dotnet test
 
-# 
+```
 
-# \## Version 1.1
 
-# 
 
-# \* Additional ISO Currency Support
+Create package:
 
-# \* Improved Formatting Rules
 
-# \* Enhanced Validation
 
-# 
+```bash
 
-# \## Version 1.2
+dotnet pack -c Release
 
-# 
+```
 
-# \* Localization Support
 
-# \* French
 
-# \* German
+Generated package:
 
-# \* Spanish
 
-# \* Arabic
 
-# 
+```text
 
-# \## Version 2.0
+bin/Release/CurrencyWords.1.0.0.nupkg
 
-# 
+```
 
-# \* BigInteger Support
 
-# \* Custom Numbering Systems
 
-# \* Banking/Cheque Templates
+\---
 
-# 
 
-# \---
 
-# 
+\# 🧪 Testing the Package Locally
 
-# \# 🤝 Contributing
 
-# 
 
-# Contributions are welcome.
+Create a local NuGet feed:
 
-# 
 
-# Feel free to:
 
-# 
+```text
 
-# \* Open Issues
+C:\\LocalNugetFeed
 
-# \* Submit Pull Requests
+```
 
-# \* Suggest Improvements
 
-# 
 
-# \---
+Copy:
 
-# 
 
-# \# ⭐ Support
 
-# 
+```text
 
-# If you find this project useful, please consider giving it a star.
+CurrencyWords.1.0.0.nupkg
 
-# 
+```
 
-# It helps increase visibility and encourages further development.
 
-# 
 
-# \---
+into the folder.
 
-# 
 
-# \# 📜 License
 
-# 
+Register source:
 
-# Distributed under the MIT License.
 
-# 
 
-# \---
+```bash
 
-# 
+dotnet nuget add source C:\\LocalNugetFeed --name LocalCurrencyWords
 
-# \# 👨‍💻 Author
+```
 
-# 
 
-# \### Nikhil Badhe
 
-# 
+Install:
 
-# Software Engineer | .NET Developer | Open Source Contributor
 
-# 
 
-# Building practical solutions for finance, enterprise applications, and developer productivity.
+```bash
+
+dotnet add package CurrencyWords --source LocalCurrencyWords
+
+```
+
+
+
+\---
+
+
+
+\# 🏆 Why Another Currency Library?
+
+
+
+Most number-to-word libraries:
+
+
+
+❌ Support only generic numbers
+
+
+
+❌ Lack Indian numbering support
+
+
+
+❌ Are not finance-oriented
+
+
+
+❌ Do not support configurable currencies
+
+
+
+CurrencyWords was designed specifically for:
+
+
+
+✅ Banking Solutions
+
+
+
+✅ ERP Systems
+
+
+
+✅ Invoice Generation
+
+
+
+✅ Financial Reporting
+
+
+
+✅ Cheque Printing
+
+
+
+✅ Enterprise Applications
+
+
+
+\---
+
+
+
+\# 🚀 Future Enhancements
+
+
+
+\### Version 1.1
+
+
+
+\* Additional ISO Currency Support
+
+\* Enhanced Validation
+
+\* Improved Formatting Rules
+
+
+
+\### Version 1.2
+
+
+
+\* Localization Support
+
+\* French
+
+\* German
+
+\* Spanish
+
+\* Arabic
+
+
+
+\### Version 2.0
+
+
+
+\* BigInteger Support
+
+\* Custom Numbering Systems
+
+\* Banking Templates
+
+\* Cheque Formatting Templates
+
+
+
+\---
+
+
+
+\# ⭐ If You Like This Project
+
+
+
+Please consider giving it a star on GitHub.
+
+
+
+It helps increase visibility and supports future development.
+
+
+
+```text
+
+⭐ Star the Repository
+
+🍴 Fork the Project
+
+🐛 Report Issues
+
+💡 Suggest Features
+
+```
 
 
 

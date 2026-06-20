@@ -1,4 +1,4 @@
-﻿namespace CurrencyWords.Enum
+﻿namespace CurrencyWords.Enums
 {
     public enum CurrencyCode
     {

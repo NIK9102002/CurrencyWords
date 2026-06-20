@@ -11,7 +11,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
     <PackageId>CurrencyWords</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
 
     <Authors>Nikhil Badhe</Authors>
     <Company>Nikhil Badhe</Company>
@@ -36,7 +36,7 @@
       https://github.com/NIK9102002/CurrencyWords
     </PackageProjectUrl>
 
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReadmeFile>NUGET_README.md</PackageReadmeFile>
 
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
@@ -51,7 +51,7 @@
 
   <!-- Include README in NuGet Package -->
   <ItemGroup>
-    <None Include="README.md" Pack="true" PackagePath="\" />
+    <None Include="NUGET_README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <!-- Embed Currency Configuration -->

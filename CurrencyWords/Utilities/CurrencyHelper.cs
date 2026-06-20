@@ -1,29 +1,18 @@
-﻿namespace CurrencyWords.Utilities
+﻿using CurrencyWords.Configurations;
+
+namespace CurrencyWords.Utilities
 {
     public static class CurrencyHelper
     {
-        private static readonly HashSet<string> SupportedCurrencies =
-        [
-            "INR",
-            "USD",
-            "EUR",
-            "GBP",
-            "AED",
-            "SGD",
-            "HKD",
-            "JPY",
-            "CAD",
-            "AUD"
-        ];
-
-        public static bool IsSupported(string currencyCode)
+        public static bool IsSupported(string currencyCode, CurrencyConfiguration configuration)
         {
-            return SupportedCurrencies.Contains(
+            return configuration.Currencies.ContainsKey(
                 currencyCode.ToUpperInvariant());
         }
-        public static IReadOnlyCollection<string>GetSupportedCurrencies()
+
+        public static IReadOnlyCollection<string>GetSupportedCurrencies(CurrencyConfiguration configuration)
         {
-            return SupportedCurrencies;
+            return configuration.Currencies.Keys.ToList();
         }
     }
 }

@@ -1,12 +1,7 @@
 ﻿using CurrencyWords.Configurations;
-using CurrencyWords.Enum;
+using CurrencyWords.Enums;
 using CurrencyWords.Formatters;
 using CurrencyWords.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CurrencyWords.Services
 {
@@ -21,8 +16,19 @@ namespace CurrencyWords.Services
             _config = config;
             _indianFormatter = indianFormatter;
             _internationalFormatter = internationalFormatter;
-        }        
+        }
+        public string Convert(decimal amount, string currencyCode)
+        {
+            if (!Enum.TryParse<CurrencyCode>(currencyCode,true,out var parsedCurrency))
+            {
+                throw new NotSupportedException(
+                    $"Currency '{currencyCode}' is not supported.");
+            }
 
+            return Convert(
+                amount,
+                parsedCurrency);
+        }
         public string Convert(decimal amount, CurrencyCode currencyCode)
         {
             if (!_config.Currencies.TryGetValue(currencyCode.ToString(), out var currency))

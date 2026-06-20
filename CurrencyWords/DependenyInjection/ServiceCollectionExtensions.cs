@@ -20,8 +20,7 @@ namespace CurrencyWords.DependenyInjection
 
             services.AddSingleton<InternationalNumberFormatter>();
 
-            services.AddSingleton<ICurrencyWordConverter,
-                CurrencyWordConverter>();
+            services.AddSingleton<ICurrencyWordConverter,CurrencyWordConverter>();
 
             return services;
         }

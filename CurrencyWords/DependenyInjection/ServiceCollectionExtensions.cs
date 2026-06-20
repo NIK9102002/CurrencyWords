@@ -9,21 +9,21 @@ namespace CurrencyWords.DependenyInjection
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection
-            AddCurrencyWords(this IServiceCollection services, IConfiguration configuration)
-            {
-                var currencyConfiguration = new CurrencyConfiguration();
+        public static IServiceCollection AddCurrencyWords(this IServiceCollection services)
+        {
+            var currencyConfiguration =
+                CurrencyConfigurationLoader.Load();
 
-                configuration.Bind(currencyConfiguration);
+            services.AddSingleton(currencyConfiguration);
 
-                services.AddSingleton(currencyConfiguration);
+            services.AddSingleton<IndianNumberFormatter>();
 
-                services.AddSingleton<IndianNumberFormatter>();
-                services.AddSingleton<InternationalNumberFormatter>();
+            services.AddSingleton<InternationalNumberFormatter>();
 
-                services.AddSingleton<ICurrencyWordConverter, CurrencyWordConverter>();
+            services.AddSingleton<ICurrencyWordConverter,
+                CurrencyWordConverter>();
 
-                return services;
+            return services;
         }
     }
 }

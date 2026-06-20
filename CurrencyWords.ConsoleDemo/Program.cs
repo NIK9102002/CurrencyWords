@@ -1,15 +1,10 @@
 ﻿using CurrencyWords.DependenyInjection;
 using CurrencyWords.Interfaces;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
-var configuration = new ConfigurationBuilder()
-    .AddJsonFile("currencies.json")
-    .Build();
 
 var services = new ServiceCollection();
 
-services.AddCurrencyWords(configuration);
+services.AddCurrencyWords();
 
 var provider = services.BuildServiceProvider();
 

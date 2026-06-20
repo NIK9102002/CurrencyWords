@@ -2,22 +2,63 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <!-- NuGet Package Settings -->
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <PackageId>CurrencyWords</PackageId>
+    <Version>1.0.0</Version>
+
+    <Authors>Nikhil Badhe</Authors>
+    <Company>Nikhil Badhe</Company>
+
+    <Description>
+      A .NET library for converting monetary amounts into words across multiple currencies and numbering systems.
+    </Description>
+
+    <PackageTags>
+      currency;currency-to-words;number-to-words;finance;banking;invoice;erp;money
+    </PackageTags>
+
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <RepositoryUrl>
+      https://github.com/YOUR_GITHUB_USERNAME/CurrencyWords
+    </RepositoryUrl>
+
+    <RepositoryType>git</RepositoryType>
+
+    <PackageProjectUrl>
+      https://github.com/NIK9102002/CurrencyWords
+    </PackageProjectUrl>
+
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.9" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.9" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.9" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.9" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="10.0.9" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="10.0.0" />
   </ItemGroup>
 
+  <!-- Include README in NuGet Package -->
   <ItemGroup>
-    <None Update="Resources\Currencies.json">
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <!-- Embed Currency Configuration -->
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Currencies.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

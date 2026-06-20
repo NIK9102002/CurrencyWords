@@ -1,0 +1,64 @@
+{
+  "Currencies": {
+    "INR": {
+      "MajorUnit": "Rupees",
+      "MinorUnit": "Paise",
+      "DecimalPlaces": 2,
+      "NumberingSystem": "Indian"
+    },
+    "USD": {
+      "MajorUnit": "Dollars",
+      "MinorUnit": "Cents",
+      "DecimalPlaces": 2,
+      "NumberingSystem": "International"
+    },
+    "EUR": {
+      "MajorUnit": "Euros",
+      "MinorUnit": "Cents",
+      "DecimalPlaces": 2,
+      "NumberingSystem": "International"
+    },
+    "GBP": {
+      "MajorUnit": "Pounds",
+      "MinorUnit": "Pence",
+      "DecimalPlaces": 2,
+      "NumberingSystem": "International"
+    },
+    "AED": {
+      "MajorUnit": "Dirhams",
+      "MinorUnit": "Fils",
+      "DecimalPlaces": 2,
+      "NumberingSystem": "International"
+    },
+    "SGD": {
+      "MajorUnit": "Singapore Dollars",
+      "MinorUnit": "Cents",
+      "DecimalPlaces": 2,
+      "NumberingSystem": "International"
+    },
+    "HKD": {
+      "MajorUnit": "Hong Kong Dollars",
+      "MinorUnit": "Cents",
+      "DecimalPlaces": 2,
+      "NumberingSystem": "International"
+    },
+    "JPY": {
+      "MajorUnit": "Yen",
+      "MinorUnit": "",
+      "DecimalPlaces": 0,
+      "NumberingSystem": "International"
+    },
+    "CAD": {
+      "MajorUnit": "Canadian Dollars",
+      "MinorUnit": "Cents",
+      "DecimalPlaces": 2,
+      "NumberingSystem": "International"
+    },
+    "AUD": {
+      "MajorUnit": "Australian Dollars",
+      "MinorUnit": "Cents",
+      "DecimalPlaces": 2,
+      "NumberingSystem": "International"
+    }
+  }
+}
